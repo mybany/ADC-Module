@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  ADC_Module.cpp
+c:\document\work file\visual studio file\visual c++ file\sar_adc\sar_adc\adc_module.cpp(28): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\document\work file\visual studio file\visual c++ file\sar_adc\sar_adc\adc_module.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
