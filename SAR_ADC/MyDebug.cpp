@@ -4,7 +4,7 @@
 //===========================TXT Output===========================//
 void TXT_Output(vector<double> AD_Result)
 {
-	ofstream out_file("E:\\WorkFile_E\\MatlabFile\\MT2801_Model\\AD_Result(test).txt");
+	ofstream out_file("./AD_Result(test).txt");
 	//out_file << "Hello World" << endl;
 	out_file.precision(14);
 	for (int i = 0; i < AD_Result.size(); i++)
@@ -16,7 +16,7 @@ void TXT_Output(vector<double> AD_Result)
 
 void TXT_Output_String(vector<string> AD_Result)
 {
-	ofstream out_file("E:\\WorkFile_E\\MatlabFile\\MT4006_Model\\AD_Result(test).txt");
+	ofstream out_file("./AD_Result(test).txt");
 	//out_file << "Hello World" << endl;
 	//out_file.precision(14);
 	for (int i = 0; i < AD_Result.size(); i++)
@@ -28,7 +28,7 @@ void TXT_Output_String(vector<string> AD_Result)
 
 void Parament1_Output(vector<double> Parament)
 {
-	ofstream out_file("E:\\WorkFile_E\\MatlabFile\\MT2801_Model\\Parament1(test).txt");
+	ofstream out_file("./Parament1(test).txt");
 	//out_file << "Hello World" << endl;
 	out_file.precision(14);
 	for (int i = 0; i < Parament.size(); i++)
@@ -41,7 +41,7 @@ void Parament1_Output(vector<double> Parament)
 
 void Temp_Output(double input)
 {
-	ofstream out_file("E:\\WorkFile_E\\MatlabFile\\MT2801_Model\\tempdata.txt", ios::app);
+	ofstream out_file("./tempdata.txt", ios::app);
 	out_file.precision(14);
 	out_file << input << endl;
 }

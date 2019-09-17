@@ -7,30 +7,53 @@
 #include "ADC_BASE_Component.h"
 #include "SAR_ADC.h"
 #include "TI_SAR_ADC.h"
-#include "Pipelined_SAR_ADC.h"
+//#include "Pipelined_SAR_ADC.h"
 #include "MyDebug.h"
 #define channel_num 4
 
 
-void MT4005B(void);
+void MT2801(void);
 void MT4006(void);
 
 int main()
 {
 	MT4006();
-	
+	//MT2801();
+
 }
 
 void MT4006()
 {
 	AD_Setting AD_Signal;
-	double Main_Clock = 1 / 50e6;
-	AD_Signal.Init_AD_Setting(1, 0.89*2, 0, 50e6 * 251 / 1024, 50e6, 1e4, 2e-9);
+	double Main_Clock = 1 / 125e6;
+	AD_Signal.Init_AD_Setting(1, 0, 0, 1e6 * 251 / 1024, 50e6, 1e4, 2e-9);
 
 
 	SARADC testAD;
-	testAD.InitSARADC(8, 2, 0, 1, 4e-15, 2);
+	testAD.InitSARADC(8, 2, 0, 1, 10e-15, 2);
 	testAD.InitCapArray();
+
+
+	default_random_engine randomengine;
+	randomengine.seed(231);
+	uniform_real_distribution<double> Cap_Mis_random(0.8, 1.2);
+	vector<double> NCap_Mis_Ratio;
+	vector<double> PCap_Mis_Ratio;
+	NCap_Mis_Ratio.resize(8);
+	PCap_Mis_Ratio.resize(8);
+
+	for (int i = 0; i < 8; i++)
+	{
+		NCap_Mis_Ratio[i] = Cap_Mis_random(randomengine);
+		PCap_Mis_Ratio[i] = Cap_Mis_random(randomengine);
+	}
+
+	//testAD.PCapArray[0] = testAD.PCapArray[0] * 1.25;
+	//testAD.NCapArray[0] = testAD.NCapArray[0] * 1.25;
+
+	testAD.InitCapMismatch(NCap_Mis_Ratio, PCap_Mis_Ratio);
+	testAD.InitOffsetMisMatch(0.07);
+
 
 	vector<string> AD_Result(AD_Signal.Samp_Times);
 
@@ -49,7 +72,7 @@ void MT4006()
 
 
 
-void MT4005B()
+void MT2801()
 {
 	AD_Setting AD_Signal;
 	double Main_Clock = 1 / 6.4e9;

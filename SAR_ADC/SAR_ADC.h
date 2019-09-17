@@ -24,7 +24,7 @@ public:
 
 	double radix;					//Radix of non binary ADC
 
-	double P_DAC_Voltage;
+	double P_DAC_Voltage;			//This is for watching and Pipelined SAR ADC
 	double N_DAC_Voltage;
 
 
